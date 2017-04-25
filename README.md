@@ -16,23 +16,21 @@ dependencies:
 
 ```crystal
 require "docker"
-```
 
-```crystal
-  Docker.configure do |config|
-    #config.address = "tcp://localhost:2376"
-    config.address = "unix:///var/run/docker.sock"
-  end
+Docker.configure do |config|
+  #config.address = "tcp://localhost:2376"
+  config.address = "unix:///var/run/docker.sock"
+end
 
-  puts Docker::Container.all.inspect
+puts Docker::Container.all.inspect
 
-  # swarm mode has to be enabled
-  puts Docker::Service.all.inspect
+# swarm mode has to be enabled
+puts Docker::Service.all.inspect
 ```
 
 ## API
 
-### `Docker.configure(blk : Proc(config : Docker::Configuration))
+### `Docker.configure(&blk : Proc(config : Docker::Configuration))
 Configures the default connection object.
 
 ### `Docker::Container.all(all : Bool, limit : Int32?, since : String?, before : String?, size : Bool, filters : String => Array(String))`
